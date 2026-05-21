@@ -77,7 +77,7 @@ function Landing() {
       </section>
 
       {/* CORE MESSAGE */}
-      <section className="relative border-y border-border/60 bg-[oklch(0.13_0.03_260)]">
+      <section className="relative border-y border-border/60 bg-[color:var(--color-surface-strong)]">
         <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="text-xs uppercase tracking-[0.2em] text-gold mb-3">The challenge</div>
@@ -177,26 +177,27 @@ function Landing() {
 
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-4 py-20">
-        <div className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-[oklch(0.22_0.06_262)] to-[oklch(0.16_0.05_265)] p-10 lg:p-14">
-          <div className="absolute inset-0 grid-bg opacity-30" />
-          <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-gold/20 blur-3xl" />
+        <div className="relative overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-primary to-[color:color-mix(in_oklab,var(--color-primary)_60%,black)] p-10 lg:p-14 text-primary-foreground">
+          <div className="absolute inset-0 grid-bg opacity-20" />
+          <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-gold/30 blur-3xl" />
           <div className="relative max-w-2xl">
             <Shield className="w-8 h-8 text-gold mb-4" />
-            <h3 className="text-3xl font-display font-bold leading-tight">
+            <h3 className="text-3xl font-display font-bold leading-tight text-primary-foreground">
               The future of smart governance in Uganda is not <em className="text-gold not-italic">more</em> isolated systems —
               it is <span className="text-gold">secure interoperability</span> between the systems we already have.
             </h3>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/simulation" className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-gold text-[oklch(0.15_0.03_260)] font-semibold hover:bg-gold/90 transition">
+              <Link to="/simulation" className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-gold text-background font-semibold hover:bg-gold/90 transition">
                 <Activity className="w-4 h-4" /> See live exchange
               </Link>
-              <Link to="/security" className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:bg-accent transition">
+              <Link to="/security" className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-primary-foreground/40 hover:bg-primary-foreground/10 transition">
                 <FileCheck2 className="w-4 h-4" /> Security & governance
               </Link>
             </div>
           </div>
         </div>
       </section>
+
     </SiteShell>
   );
 }

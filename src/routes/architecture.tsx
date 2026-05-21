@@ -97,7 +97,7 @@ function ArchPage() {
               <div className="text-xs uppercase tracking-wider text-gold mb-2">API endpoints</div>
               <div className="space-y-2 mb-5">
                 {ministry.endpoints.map((e) => (
-                  <div key={e.path} className="font-mono text-xs p-2 rounded bg-[oklch(0.12_0.03_260)] border border-border/60">
+                  <div key={e.path} className="font-mono text-xs p-2 rounded mono-surface border border-border/60">
                     <span className="text-gold mr-2">{e.method}</span>{e.path}
                     <div className="text-muted-foreground text-[10px] mt-0.5">{e.name}</div>
                   </div>

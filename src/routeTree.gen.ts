@@ -13,6 +13,7 @@ import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as SimulationRouteImport } from './routes/simulation'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as FaceScanRouteImport } from './routes/face-scan'
 import { Route as CitizenRouteImport } from './routes/citizen'
 import { Route as ArchitectureRouteImport } from './routes/architecture'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
@@ -37,6 +38,11 @@ const SecurityRoute = SecurityRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaceScanRoute = FaceScanRouteImport.update({
+  id: '/face-scan',
+  path: '/face-scan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CitizenRoute = CitizenRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/architecture': typeof ArchitectureRoute
   '/citizen': typeof CitizenRoute
+  '/face-scan': typeof FaceScanRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
   '/simulation': typeof SimulationRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/architecture': typeof ArchitectureRoute
   '/citizen': typeof CitizenRoute
+  '/face-scan': typeof FaceScanRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
   '/simulation': typeof SimulationRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/architecture': typeof ArchitectureRoute
   '/citizen': typeof CitizenRoute
+  '/face-scan': typeof FaceScanRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
   '/simulation': typeof SimulationRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/architecture'
     | '/citizen'
+    | '/face-scan'
     | '/login'
     | '/security'
     | '/simulation'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/architecture'
     | '/citizen'
+    | '/face-scan'
     | '/login'
     | '/security'
     | '/simulation'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/architecture'
     | '/citizen'
+    | '/face-scan'
     | '/login'
     | '/security'
     | '/simulation'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   ArchitectureRoute: typeof ArchitectureRoute
   CitizenRoute: typeof CitizenRoute
+  FaceScanRoute: typeof FaceScanRoute
   LoginRoute: typeof LoginRoute
   SecurityRoute: typeof SecurityRoute
   SimulationRoute: typeof SimulationRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/face-scan': {
+      id: '/face-scan'
+      path: '/face-scan'
+      fullPath: '/face-scan'
+      preLoaderRoute: typeof FaceScanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/citizen': {
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   ArchitectureRoute: ArchitectureRoute,
   CitizenRoute: CitizenRoute,
+  FaceScanRoute: FaceScanRoute,
   LoginRoute: LoginRoute,
   SecurityRoute: SecurityRoute,
   SimulationRoute: SimulationRoute,

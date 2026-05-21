@@ -85,7 +85,7 @@ function SimulationPage() {
               <div className="font-semibold">Event stream</div>
               <span className="ml-auto text-xs text-muted-foreground">{events.length} events</span>
             </div>
-            <div className="font-mono text-xs space-y-1 max-h-[460px] overflow-auto bg-[oklch(0.1_0.03_260)] rounded p-3 border border-border/60">
+            <div className="font-mono text-xs space-y-1 max-h-[460px] overflow-auto mono-surface rounded p-3 border border-border/60">
               {events.map((e) => (
                 <div key={e.id} className="flex gap-2">
                   <span className="text-muted-foreground">{new Date().toLocaleTimeString().slice(0,8)}</span>

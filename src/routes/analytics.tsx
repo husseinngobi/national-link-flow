@@ -47,10 +47,10 @@ function Analytics() {
                       <stop offset="100%" stopColor="oklch(0.65 0.18 255)" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.3 0.04 262 / 40%)" />
-                  <XAxis dataKey="h" tick={{ fill: "oklch(0.7 0.03 260)", fontSize: 11 }} />
-                  <YAxis tick={{ fill: "oklch(0.7 0.03 260)", fontSize: 11 }} />
-                  <Tooltip contentStyle={{ background: "oklch(0.16 0.04 260)", border: "1px solid oklch(0.3 0.04 262)", borderRadius: 8, fontSize: 12 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+                  <XAxis dataKey="h" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} />
+                  <YAxis tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} />
+                  <Tooltip contentStyle={{ background: "var(--color-card)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} />
                   <Area type="monotone" dataKey="req" stroke="oklch(0.75 0.18 255)" fill="url(#g1)" strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
@@ -62,10 +62,10 @@ function Analytics() {
             <div className="h-72">
               <ResponsiveContainer>
                 <BarChart data={byMin}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.3 0.04 262 / 40%)" />
-                  <XAxis dataKey="name" tick={{ fill: "oklch(0.7 0.03 260)", fontSize: 10 }} />
-                  <YAxis tick={{ fill: "oklch(0.7 0.03 260)", fontSize: 10 }} />
-                  <Tooltip contentStyle={{ background: "oklch(0.16 0.04 260)", border: "1px solid oklch(0.3 0.04 262)", borderRadius: 8, fontSize: 12 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+                  <XAxis dataKey="name" tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }} />
+                  <YAxis tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }} />
+                  <Tooltip contentStyle={{ background: "var(--color-card)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} />
                   <Bar dataKey="req" fill="oklch(0.82 0.14 85)" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
