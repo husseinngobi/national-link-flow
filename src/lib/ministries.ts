@@ -132,10 +132,26 @@ export const MOCK_CITIZEN = {
 
 
 export const ROLES = [
+  { id: "agency", title: "Agency Administrator", desc: "Inter-agency super-access · NGDXH oversight", color: "gold", grants: ["nira","ura","moh","lands","mowt","police","moes","immig","ucc"], denies: [] },
   { id: "nira", title: "NIRA Officer", desc: "Identity & civil registration", color: "primary", grants: ["nira"], denies: ["police", "moh"] },
   { id: "ura", title: "URA Officer", desc: "Revenue & taxation", color: "gold", grants: ["ura", "nira"], denies: ["moh", "police"] },
   { id: "moh", title: "Health Officer", desc: "Health & insurance", color: "success", grants: ["moh", "nira"], denies: ["police", "ura", "lands"] },
   { id: "lands", title: "Lands Officer", desc: "Land & property", color: "warning", grants: ["lands", "nira"], denies: ["moh", "police"] },
-  { id: "police", title: "Police Officer", desc: "Justice & law enforcement", color: "destructive", grants: ["police", "nira", "immig"], denies: ["moh"] },
-  { id: "admin", title: "Administrator", desc: "System governance & audit", color: "primary", grants: ["nira","ura","moh","lands","mowt","police","moes","immig","ucc"], denies: [] },
+  { id: "mowt", title: "Transport Officer", desc: "Permits, vehicles & licensing", color: "primary", grants: ["mowt", "nira", "police"], denies: ["moh"] },
+  { id: "police", title: "Police Officer", desc: "Justice & law enforcement", color: "destructive", grants: ["police", "nira", "immig", "mowt"], denies: ["moh"] },
+  { id: "immig", title: "Immigration Officer", desc: "Borders, passports & visas", color: "primary", grants: ["immig", "nira", "police"], denies: ["moh"] },
+  { id: "admin", title: "System Auditor", desc: "Read-only governance & audit logs", color: "primary", grants: ["nira","ura","moh","lands","mowt","police","moes","immig","ucc"], denies: [] },
 ];
+
+/**
+ * Demo credentials. For showcase only — every officer uses the same PIN.
+ * Officer IDs are generated deterministically from the role id.
+ */
+export const DEMO_PIN = "240194";
+export const DEMO_CREDENTIALS = ROLES.map((r, i) => ({
+  role: r.id,
+  title: r.title,
+  officerId: `OFC-2026-${String(118 + i).padStart(4, "0")}`,
+  pin: DEMO_PIN,
+}));
+
