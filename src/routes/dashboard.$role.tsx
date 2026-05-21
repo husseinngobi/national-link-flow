@@ -118,7 +118,7 @@ function Dashboard() {
               <div className="font-semibold">Live audit trail</div>
               <span className="ml-auto text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" /> tail -f</span>
             </div>
-            <div className="font-mono text-xs space-y-1 bg-[oklch(0.1_0.03_260)] rounded p-3 border border-border/60">
+            <div className="font-mono text-xs space-y-1 mono-surface rounded p-3 border border-border/60">
               {FEED.map((f, i) => (
                 <div key={i}><span className="text-muted-foreground">{f.t}</span> <span className="text-gold">[{f.m}]</span> {f.a}</div>
               ))}

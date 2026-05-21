@@ -36,7 +36,7 @@ function SecPage() {
         <div className="mt-10 grid lg:grid-cols-2 gap-6">
           <div className="glass rounded-xl p-6">
             <div className="text-xs uppercase tracking-wider text-gold mb-3">Sample RBAC policy</div>
-            <pre className="font-mono text-xs bg-[oklch(0.1_0.03_260)] rounded p-4 border border-border/60 overflow-auto">
+            <pre className="font-mono text-xs mono-surface rounded p-4 border border-border/60 overflow-auto">
 {`{
   "role": "police_officer",
   "grants": [

@@ -77,7 +77,7 @@ function Landing() {
       </section>
 
       {/* CORE MESSAGE */}
-      <section className="relative border-y border-border/60 bg-[oklch(0.13_0.03_260)]">
+      <section className="relative border-y border-border/60 bg-[color:var(--color-surface-strong)]">
         <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="text-xs uppercase tracking-[0.2em] text-gold mb-3">The challenge</div>
