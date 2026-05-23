@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { SiteShell } from "@/components/site-shell";
 import { MINISTRIES } from "@/lib/ministries";
-import { ArrowRight, Shield, Network, Zap, Lock, Activity, TrendingDown, Gauge, Database, CheckCircle2, AlertTriangle, FileCheck2 } from "lucide-react";
+import { ArrowRight, Shield, Network, Zap, Lock, Activity, TrendingDown, Gauge, Database, CheckCircle2, AlertTriangle, FileCheck2, Brain, Radar, GitBranch, Route as RouteIcon, Bot, FileText } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Landing });
 
