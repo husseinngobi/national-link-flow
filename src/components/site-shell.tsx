@@ -24,7 +24,6 @@ const MORE_NAV = [
 ];
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
-export function SiteShell({ children }: { children: React.ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
   const [moreOpen, setMoreOpen] = useState(false);
   return (
