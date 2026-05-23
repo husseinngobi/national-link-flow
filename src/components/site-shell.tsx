@@ -1,17 +1,26 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Network, Activity, BarChart3, Lock, LogIn, Users, Home, Search, ScanFace } from "lucide-react";
+import { Network, Activity, BarChart3, Lock, LogIn, Home, Search, ScanFace, Radar, Brain, GitBranch, Route as RouteIcon, FileText, Bot, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import coatOfArms from "@/assets/coat-of-arms.png";
+import { useState } from "react";
 
-const NAV = [
+const PRIMARY_NAV = [
   { to: "/", label: "Home", icon: Home },
+  { to: "/command-center", label: "Command Center", icon: Radar },
+  { to: "/verify", label: "Verify", icon: Search },
+  { to: "/fraud-detection", label: "AI Fraud", icon: Brain },
+  { to: "/assistant", label: "AI Assistant", icon: Bot },
+];
+
+const MORE_NAV = [
   { to: "/architecture", label: "Architecture", icon: Network },
-  { to: "/verify", label: "Verify Citizen", icon: Search },
-  { to: "/face-scan", label: "Face Scan", icon: ScanFace },
+  { to: "/api-gateway", label: "API Gateway", icon: RouteIcon },
+  { to: "/events", label: "Event Bus", icon: GitBranch },
   { to: "/simulation", label: "Live Exchange", icon: Activity },
   { to: "/analytics", label: "Analytics", icon: BarChart3 },
+  { to: "/audit", label: "Audit Ledger", icon: FileText },
   { to: "/security", label: "Security", icon: Lock },
-  { to: "/citizen", label: "Citizen Portal", icon: Users },
+  { to: "/face-scan", label: "Face Scan", icon: ScanFace },
 ];
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
