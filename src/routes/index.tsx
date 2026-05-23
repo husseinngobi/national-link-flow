@@ -116,6 +116,48 @@ function Landing() {
         </div>
       </section>
 
+      {/* NEXT-GEN CAPABILITIES */}
+      <section className="border-t border-border/60 bg-[color:var(--color-surface-strong)]">
+        <div className="max-w-7xl mx-auto px-4 py-20">
+          <div className="max-w-3xl mb-12">
+            <div className="text-xs uppercase tracking-[0.2em] text-gold mb-3">Beyond UGHub · next-generation capabilities</div>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold leading-tight">
+              Not another portal. A <span className="text-gold">smart interoperability infrastructure</span> for AI-era governance.
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              NGDXH complements and extends national interoperability initiatives with AI-powered monitoring, event-driven coordination, zero-trust security and intelligent service orchestration.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { to: "/command-center", icon: Radar, t: "Interoperability Command Center", d: "Cyber-grade NOC view of every ministry adapter, traffic flow, SLA and live security event.", tag: "Real-time" },
+              { to: "/fraud-detection", icon: Brain, t: "AI Fraud & Anomaly Detection", d: "Federated AI correlates signals across MDAs to catch duplicate identities, ghost beneficiaries and abnormal transfers.", tag: "AI" },
+              { to: "/events", icon: GitBranch, t: "Event-Driven Government", d: "Kafka-grade national event bus. One ministry publishes, all authorized agencies react in milliseconds.", tag: "Distributed" },
+              { to: "/api-gateway", icon: RouteIcon, t: "Smart API Gateway · Zero-Trust", d: "mTLS, OAuth2, scoped JWTs, throttling, anomaly scoring. Every request authenticated regardless of network.", tag: "Security" },
+              { to: "/assistant", icon: Bot, t: "AI Citizen Assistant", d: "Multilingual conversational guide grounded in 9 ministry APIs — English, Luganda, Runyankole, Acholi, Lusoga.", tag: "Multilingual" },
+              { to: "/audit", icon: FileText, t: "Immutable Audit Ledger", d: "Every request hashed, signed and sealed. Auditor General and citizens can verify access — forever.", tag: "Transparency" },
+            ].map((c, i) => (
+              <motion.div key={c.to} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}>
+                <Link to={c.to} className="block glass rounded-xl p-5 hover:border-gold/50 transition group h-full">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-10 h-10 rounded-md bg-gold/15 text-gold flex items-center justify-center">
+                      <c.icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground border border-border rounded-full px-2 py-0.5">{c.tag}</span>
+                  </div>
+                  <div className="font-display font-bold text-base mb-1.5 group-hover:text-gold transition">{c.t}</div>
+                  <div className="text-sm text-muted-foreground leading-relaxed">{c.d}</div>
+                  <div className="mt-4 inline-flex items-center gap-1 text-xs text-primary group-hover:gap-2 transition-all">
+                    Explore <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* WHY MATTERS */}
       <section className="max-w-7xl mx-auto px-4 py-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
