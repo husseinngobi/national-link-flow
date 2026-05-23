@@ -13,9 +13,15 @@ import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as SimulationRouteImport } from './routes/simulation'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as FraudDetectionRouteImport } from './routes/fraud-detection'
 import { Route as FaceScanRouteImport } from './routes/face-scan'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as CitizenRouteImport } from './routes/citizen'
+import { Route as AuditRouteImport } from './routes/audit'
+import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as ArchitectureRouteImport } from './routes/architecture'
+import { Route as ApiGatewayRouteImport } from './routes/api-gateway'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRoleRouteImport } from './routes/dashboard.$role'
@@ -40,9 +46,24 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FraudDetectionRoute = FraudDetectionRouteImport.update({
+  id: '/fraud-detection',
+  path: '/fraud-detection',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaceScanRoute = FaceScanRouteImport.update({
   id: '/face-scan',
   path: '/face-scan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandCenterRoute = CommandCenterRouteImport.update({
+  id: '/command-center',
+  path: '/command-center',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CitizenRoute = CitizenRouteImport.update({
@@ -50,9 +71,24 @@ const CitizenRoute = CitizenRouteImport.update({
   path: '/citizen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArchitectureRoute = ArchitectureRouteImport.update({
   id: '/architecture',
   path: '/architecture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiGatewayRoute = ApiGatewayRouteImport.update({
+  id: '/api-gateway',
+  path: '/api-gateway',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnalyticsRoute = AnalyticsRouteImport.update({
@@ -74,9 +110,15 @@ const DashboardRoleRoute = DashboardRoleRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
+  '/api-gateway': typeof ApiGatewayRoute
   '/architecture': typeof ArchitectureRoute
+  '/assistant': typeof AssistantRoute
+  '/audit': typeof AuditRoute
   '/citizen': typeof CitizenRoute
+  '/command-center': typeof CommandCenterRoute
+  '/events': typeof EventsRoute
   '/face-scan': typeof FaceScanRoute
+  '/fraud-detection': typeof FraudDetectionRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
   '/simulation': typeof SimulationRoute
@@ -86,9 +128,15 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
+  '/api-gateway': typeof ApiGatewayRoute
   '/architecture': typeof ArchitectureRoute
+  '/assistant': typeof AssistantRoute
+  '/audit': typeof AuditRoute
   '/citizen': typeof CitizenRoute
+  '/command-center': typeof CommandCenterRoute
+  '/events': typeof EventsRoute
   '/face-scan': typeof FaceScanRoute
+  '/fraud-detection': typeof FraudDetectionRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
   '/simulation': typeof SimulationRoute
@@ -99,9 +147,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
+  '/api-gateway': typeof ApiGatewayRoute
   '/architecture': typeof ArchitectureRoute
+  '/assistant': typeof AssistantRoute
+  '/audit': typeof AuditRoute
   '/citizen': typeof CitizenRoute
+  '/command-center': typeof CommandCenterRoute
+  '/events': typeof EventsRoute
   '/face-scan': typeof FaceScanRoute
+  '/fraud-detection': typeof FraudDetectionRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
   '/simulation': typeof SimulationRoute
@@ -113,9 +167,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/analytics'
+    | '/api-gateway'
     | '/architecture'
+    | '/assistant'
+    | '/audit'
     | '/citizen'
+    | '/command-center'
+    | '/events'
     | '/face-scan'
+    | '/fraud-detection'
     | '/login'
     | '/security'
     | '/simulation'
@@ -125,9 +185,15 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/analytics'
+    | '/api-gateway'
     | '/architecture'
+    | '/assistant'
+    | '/audit'
     | '/citizen'
+    | '/command-center'
+    | '/events'
     | '/face-scan'
+    | '/fraud-detection'
     | '/login'
     | '/security'
     | '/simulation'
@@ -137,9 +203,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/analytics'
+    | '/api-gateway'
     | '/architecture'
+    | '/assistant'
+    | '/audit'
     | '/citizen'
+    | '/command-center'
+    | '/events'
     | '/face-scan'
+    | '/fraud-detection'
     | '/login'
     | '/security'
     | '/simulation'
@@ -150,9 +222,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalyticsRoute: typeof AnalyticsRoute
+  ApiGatewayRoute: typeof ApiGatewayRoute
   ArchitectureRoute: typeof ArchitectureRoute
+  AssistantRoute: typeof AssistantRoute
+  AuditRoute: typeof AuditRoute
   CitizenRoute: typeof CitizenRoute
+  CommandCenterRoute: typeof CommandCenterRoute
+  EventsRoute: typeof EventsRoute
   FaceScanRoute: typeof FaceScanRoute
+  FraudDetectionRoute: typeof FraudDetectionRoute
   LoginRoute: typeof LoginRoute
   SecurityRoute: typeof SecurityRoute
   SimulationRoute: typeof SimulationRoute
@@ -190,11 +268,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fraud-detection': {
+      id: '/fraud-detection'
+      path: '/fraud-detection'
+      fullPath: '/fraud-detection'
+      preLoaderRoute: typeof FraudDetectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/face-scan': {
       id: '/face-scan'
       path: '/face-scan'
       fullPath: '/face-scan'
       preLoaderRoute: typeof FaceScanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command-center': {
+      id: '/command-center'
+      path: '/command-center'
+      fullPath: '/command-center'
+      preLoaderRoute: typeof CommandCenterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/citizen': {
@@ -204,11 +303,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CitizenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/architecture': {
       id: '/architecture'
       path: '/architecture'
       fullPath: '/architecture'
       preLoaderRoute: typeof ArchitectureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api-gateway': {
+      id: '/api-gateway'
+      path: '/api-gateway'
+      fullPath: '/api-gateway'
+      preLoaderRoute: typeof ApiGatewayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/analytics': {
@@ -238,9 +358,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalyticsRoute: AnalyticsRoute,
+  ApiGatewayRoute: ApiGatewayRoute,
   ArchitectureRoute: ArchitectureRoute,
+  AssistantRoute: AssistantRoute,
+  AuditRoute: AuditRoute,
   CitizenRoute: CitizenRoute,
+  CommandCenterRoute: CommandCenterRoute,
+  EventsRoute: EventsRoute,
   FaceScanRoute: FaceScanRoute,
+  FraudDetectionRoute: FraudDetectionRoute,
   LoginRoute: LoginRoute,
   SecurityRoute: SecurityRoute,
   SimulationRoute: SimulationRoute,
