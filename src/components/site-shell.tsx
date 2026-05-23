@@ -63,7 +63,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1 ml-4">
-            {NAV.map((n) => {
+            {PRIMARY_NAV.map((n) => {
               const active = path === n.to;
               return (
                 <Link
@@ -77,6 +77,31 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                 </Link>
               );
             })}
+            <div className="relative" onMouseLeave={() => setMoreOpen(false)}>
+              <button
+                onMouseEnter={() => setMoreOpen(true)}
+                onClick={() => setMoreOpen((o) => !o)}
+                className="px-3 py-1.5 rounded-md text-sm transition-colors text-muted-foreground hover:text-foreground hover:bg-accent/60 inline-flex items-center gap-1"
+              >
+                More <ChevronDown className="w-3.5 h-3.5" />
+              </button>
+              {moreOpen && (
+                <div className="absolute right-0 top-full mt-1 w-56 rounded-md border border-border bg-popover shadow-lg p-1 z-50">
+                  {MORE_NAV.map((n) => (
+                    <Link
+                      key={n.to}
+                      to={n.to}
+                      onClick={() => setMoreOpen(false)}
+                      className={`flex items-center gap-2 px-3 py-2 rounded text-sm ${
+                        path === n.to ? "bg-accent text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                      }`}
+                    >
+                      <n.icon className="w-3.5 h-3.5" /> {n.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           <div className="ml-auto flex items-center gap-2">
