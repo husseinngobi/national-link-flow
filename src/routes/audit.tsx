@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { FileText, Hash, Search, ShieldCheck, User, Filter } from "lucide-react";
 import { MINISTRIES } from "@/lib/ministries";
 
@@ -26,6 +27,8 @@ function genLog(i: number) {
 }
 
 function AuditPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [q, setQ] = useState("");
   const [ministry, setMinistry] = useState("all");
   const logs = useMemo(() => Array.from({ length: 60 }, (_, i) => genLog(i)), []);
@@ -35,7 +38,7 @@ function AuditPage() {
   );
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-2 flex items-center gap-2"><ShieldCheck className="w-3.5 h-3.5" /> Live audit & transparency ledger</div>
@@ -116,6 +119,6 @@ function AuditPage() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

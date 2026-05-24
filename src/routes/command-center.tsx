@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { MINISTRIES } from "@/lib/ministries";
 import { Activity, AlertTriangle, CheckCircle2, Cpu, Globe2, Radio, ShieldCheck, Signal, Wifi, Zap } from "lucide-react";
 
@@ -9,6 +10,8 @@ export const Route = createFileRoute("/command-center")({ component: CommandCent
 type Health = { id: string; latency: number; rps: number; uptime: number; status: "ok" | "degraded" | "down" };
 
 function CommandCenter() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [now, setNow] = useState(new Date());
   const [health, setHealth] = useState<Health[]>(() =>
     MINISTRIES.map((m) => ({ id: m.id, latency: 200 + Math.random() * 400, rps: 10 + Math.random() * 80, uptime: 99 + Math.random(), status: "ok" }))
@@ -48,7 +51,7 @@ function CommandCenter() {
   const avgLat = Math.round(health.reduce((s, h) => s + h.latency, 0) / health.length);
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
@@ -188,6 +191,6 @@ function CommandCenter() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

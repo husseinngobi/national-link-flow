@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { MINISTRIES } from "@/lib/ministries";
 
@@ -9,8 +10,10 @@ const traffic = Array.from({ length: 24 }, (_, i) => ({ h: `${i}:00`, req: 1200 
 const byMin = MINISTRIES.map((m) => ({ name: m.code, req: 200 + Math.round(Math.random() * 1800) }));
 
 function Analytics() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -87,6 +90,6 @@ function Analytics() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

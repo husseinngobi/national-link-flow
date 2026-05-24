@@ -9,10 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VerifyStatusRouteImport } from './routes/verify-status'
 import { Route as VerifyRouteImport } from './routes/verify'
+import { Route as ThreatMonitoringRouteImport } from './routes/threat-monitoring'
 import { Route as SimulationRouteImport } from './routes/simulation'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as HelpRouteImport } from './routes/help'
 import { Route as FraudDetectionRouteImport } from './routes/fraud-detection'
 import { Route as FaceScanRouteImport } from './routes/face-scan'
 import { Route as EventsRouteImport } from './routes/events'
@@ -26,14 +30,29 @@ import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRoleRouteImport } from './routes/dashboard.$role'
 
+const VerifyStatusRoute = VerifyStatusRouteImport.update({
+  id: '/verify-status',
+  path: '/verify-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VerifyRoute = VerifyRouteImport.update({
   id: '/verify',
   path: '/verify',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThreatMonitoringRoute = ThreatMonitoringRouteImport.update({
+  id: '/threat-monitoring',
+  path: '/threat-monitoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SimulationRoute = SimulationRouteImport.update({
   id: '/simulation',
   path: '/simulation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecurityRoute = SecurityRouteImport.update({
@@ -44,6 +63,11 @@ const SecurityRoute = SecurityRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FraudDetectionRoute = FraudDetectionRouteImport.update({
@@ -119,10 +143,14 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/face-scan': typeof FaceScanRoute
   '/fraud-detection': typeof FraudDetectionRoute
+  '/help': typeof HelpRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
+  '/services': typeof ServicesRoute
   '/simulation': typeof SimulationRoute
+  '/threat-monitoring': typeof ThreatMonitoringRoute
   '/verify': typeof VerifyRoute
+  '/verify-status': typeof VerifyStatusRoute
   '/dashboard/$role': typeof DashboardRoleRoute
 }
 export interface FileRoutesByTo {
@@ -137,10 +165,14 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/face-scan': typeof FaceScanRoute
   '/fraud-detection': typeof FraudDetectionRoute
+  '/help': typeof HelpRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
+  '/services': typeof ServicesRoute
   '/simulation': typeof SimulationRoute
+  '/threat-monitoring': typeof ThreatMonitoringRoute
   '/verify': typeof VerifyRoute
+  '/verify-status': typeof VerifyStatusRoute
   '/dashboard/$role': typeof DashboardRoleRoute
 }
 export interface FileRoutesById {
@@ -156,10 +188,14 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/face-scan': typeof FaceScanRoute
   '/fraud-detection': typeof FraudDetectionRoute
+  '/help': typeof HelpRoute
   '/login': typeof LoginRoute
   '/security': typeof SecurityRoute
+  '/services': typeof ServicesRoute
   '/simulation': typeof SimulationRoute
+  '/threat-monitoring': typeof ThreatMonitoringRoute
   '/verify': typeof VerifyRoute
+  '/verify-status': typeof VerifyStatusRoute
   '/dashboard/$role': typeof DashboardRoleRoute
 }
 export interface FileRouteTypes {
@@ -176,10 +212,14 @@ export interface FileRouteTypes {
     | '/events'
     | '/face-scan'
     | '/fraud-detection'
+    | '/help'
     | '/login'
     | '/security'
+    | '/services'
     | '/simulation'
+    | '/threat-monitoring'
     | '/verify'
+    | '/verify-status'
     | '/dashboard/$role'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -194,10 +234,14 @@ export interface FileRouteTypes {
     | '/events'
     | '/face-scan'
     | '/fraud-detection'
+    | '/help'
     | '/login'
     | '/security'
+    | '/services'
     | '/simulation'
+    | '/threat-monitoring'
     | '/verify'
+    | '/verify-status'
     | '/dashboard/$role'
   id:
     | '__root__'
@@ -212,10 +256,14 @@ export interface FileRouteTypes {
     | '/events'
     | '/face-scan'
     | '/fraud-detection'
+    | '/help'
     | '/login'
     | '/security'
+    | '/services'
     | '/simulation'
+    | '/threat-monitoring'
     | '/verify'
+    | '/verify-status'
     | '/dashboard/$role'
   fileRoutesById: FileRoutesById
 }
@@ -231,15 +279,26 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   FaceScanRoute: typeof FaceScanRoute
   FraudDetectionRoute: typeof FraudDetectionRoute
+  HelpRoute: typeof HelpRoute
   LoginRoute: typeof LoginRoute
   SecurityRoute: typeof SecurityRoute
+  ServicesRoute: typeof ServicesRoute
   SimulationRoute: typeof SimulationRoute
+  ThreatMonitoringRoute: typeof ThreatMonitoringRoute
   VerifyRoute: typeof VerifyRoute
+  VerifyStatusRoute: typeof VerifyStatusRoute
   DashboardRoleRoute: typeof DashboardRoleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/verify-status': {
+      id: '/verify-status'
+      path: '/verify-status'
+      fullPath: '/verify-status'
+      preLoaderRoute: typeof VerifyStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/verify': {
       id: '/verify'
       path: '/verify'
@@ -247,11 +306,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VerifyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/threat-monitoring': {
+      id: '/threat-monitoring'
+      path: '/threat-monitoring'
+      fullPath: '/threat-monitoring'
+      preLoaderRoute: typeof ThreatMonitoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/simulation': {
       id: '/simulation'
       path: '/simulation'
       fullPath: '/simulation'
       preLoaderRoute: typeof SimulationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/security': {
@@ -266,6 +339,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fraud-detection': {
@@ -367,10 +447,14 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   FaceScanRoute: FaceScanRoute,
   FraudDetectionRoute: FraudDetectionRoute,
+  HelpRoute: HelpRoute,
   LoginRoute: LoginRoute,
   SecurityRoute: SecurityRoute,
+  ServicesRoute: ServicesRoute,
   SimulationRoute: SimulationRoute,
+  ThreatMonitoringRoute: ThreatMonitoringRoute,
   VerifyRoute: VerifyRoute,
+  VerifyStatusRoute: VerifyStatusRoute,
   DashboardRoleRoute: DashboardRoleRoute,
 }
 export const routeTree = rootRouteImport

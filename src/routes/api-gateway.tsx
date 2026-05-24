@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { MINISTRIES } from "@/lib/ministries";
 import { Key, ShieldCheck, Activity, AlertCircle, Lock, Route as RouteIcon, Gauge, FileLock2 } from "lucide-react";
 
@@ -15,8 +16,10 @@ const CLIENTS = [
 ];
 
 function ApiGateway() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-2 flex items-center gap-2"><RouteIcon className="w-3.5 h-3.5" /> Smart API gateway · zero-trust</div>
@@ -124,6 +127,6 @@ function ApiGateway() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

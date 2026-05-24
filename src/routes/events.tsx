@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { Zap, GitBranch, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/events")({ component: EventsPage });
@@ -18,6 +19,8 @@ const TOPICS = [
 ];
 
 function EventsPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [events, setEvents] = useState<Evt[]>([]);
   const [filter, setFilter] = useState<string>("all");
   const idRef = useRef(0);
@@ -34,7 +37,7 @@ function EventsPage() {
   const topics = Array.from(new Set(TOPICS.map((t) => t.topic.split(".")[0])));
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-2 flex items-center gap-2"><GitBranch className="w-3.5 h-3.5" /> Event-driven government · Kafka-grade bus</div>
@@ -114,6 +117,6 @@ function EventsPage() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }
