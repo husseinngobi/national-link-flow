@@ -9,6 +9,8 @@ import { Shield, ArrowRight, Lock, Activity } from "lucide-react";
 export const Route = createFileRoute("/architecture")({ component: ArchPage });
 
 function ArchPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [active, setActive] = useState(MINISTRIES[0].id);
   const ministry = MINISTRIES.find((m) => m.id === active)!;
 

@@ -10,6 +10,8 @@ const traffic = Array.from({ length: 24 }, (_, i) => ({ h: `${i}:00`, req: 1200 
 const byMin = MINISTRIES.map((m) => ({ name: m.code, req: 200 + Math.round(Math.random() * 1800) }));
 
 function Analytics() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   return (
     <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">

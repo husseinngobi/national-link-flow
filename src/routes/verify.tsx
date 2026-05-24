@@ -14,6 +14,8 @@ export const Route = createFileRoute("/verify")({ component: VerifyPage });
 type Step = { ministry: string; code: string; status: "pending" | "ok"; t?: string };
 
 function VerifyPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [nin, setNin] = useState("CM900112ABCDE");
   const [loading, setLoading] = useState(false);
   const [shown, setShown] = useState(false);

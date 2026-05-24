@@ -19,6 +19,8 @@ const TOPICS = [
 ];
 
 function EventsPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [events, setEvents] = useState<Evt[]>([]);
   const [filter, setFilter] = useState<string>("all");
   const idRef = useRef(0);

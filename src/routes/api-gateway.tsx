@@ -16,6 +16,8 @@ const CLIENTS = [
 ];
 
 function ApiGateway() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   return (
     <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">

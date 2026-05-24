@@ -10,6 +10,8 @@ export const Route = createFileRoute("/command-center")({ component: CommandCent
 type Health = { id: string; latency: number; rps: number; uptime: number; status: "ok" | "degraded" | "down" };
 
 function CommandCenter() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [now, setNow] = useState(new Date());
   const [health, setHealth] = useState<Health[]>(() =>
     MINISTRIES.map((m) => ({ id: m.id, latency: 200 + Math.random() * 400, rps: 10 + Math.random() * 80, uptime: 99 + Math.random(), status: "ok" }))

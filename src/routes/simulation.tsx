@@ -17,6 +17,8 @@ const TEMPLATES = [
 ];
 
 function SimulationPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [events, setEvents] = useState<{ id: number; text: string; a: string; b: string }[]>([]);
   const [active, setActive] = useState<{ a: string; b: string } | null>(null);
 

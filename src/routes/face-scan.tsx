@@ -18,6 +18,8 @@ const STEPS = [
 ];
 
 function FaceScanPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [phase, setPhase] = useState<Phase>("idle");
 
   const run = async () => {

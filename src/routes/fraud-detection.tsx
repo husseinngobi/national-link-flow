@@ -70,6 +70,8 @@ const sevColor = (s: string) =>
   "bg-muted text-muted-foreground border-border";
 
 function FraudDetection() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [open, setOpen] = useState<string | null>(ALERTS[0].id);
   const sel = ALERTS.find((a) => a.id === open)!;
 

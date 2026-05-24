@@ -15,6 +15,8 @@ const FEED = [
 ];
 
 function Dashboard() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const { role } = useParams({ from: "/dashboard/$role" });
   const r = ROLES.find((x) => x.id === role) ?? ROLES[0];
   const granted = MINISTRIES.filter((m) => r.grants.includes(m.id));
