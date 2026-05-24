@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { MINISTRIES } from "@/lib/ministries";
 import { Activity, Radio } from "lucide-react";
 
@@ -42,7 +43,7 @@ function SimulationPage() {
   });
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-2">Live exchange</div>
@@ -110,6 +111,6 @@ function SimulationPage() {
           ))}
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

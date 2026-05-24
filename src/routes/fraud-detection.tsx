@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { AlertTriangle, Brain, ShieldAlert, Search, Sparkles, TrendingUp, Users, Eye, CheckCircle2, XCircle } from "lucide-react";
 
 export const Route = createFileRoute("/fraud-detection")({ component: FraudDetection });
@@ -73,7 +74,7 @@ function FraudDetection() {
   const sel = ALERTS.find((a) => a.id === open)!;
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -179,6 +180,6 @@ function FraudDetection() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

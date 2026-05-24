@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { ROLES, MINISTRIES } from "@/lib/ministries";
 import { CheckCircle2, XCircle, FileText, Clock, Search } from "lucide-react";
 
@@ -20,7 +21,7 @@ function Dashboard() {
   const denied = MINISTRIES.filter((m) => r.denies.includes(m.id));
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
@@ -126,7 +127,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }
 

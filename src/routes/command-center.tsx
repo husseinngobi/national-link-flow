@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { MINISTRIES } from "@/lib/ministries";
 import { Activity, AlertTriangle, CheckCircle2, Cpu, Globe2, Radio, ShieldCheck, Signal, Wifi, Zap } from "lucide-react";
 
@@ -48,7 +49,7 @@ function CommandCenter() {
   const avgLat = Math.round(health.reduce((s, h) => s + h.latency, 0) / health.length);
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
@@ -188,6 +189,6 @@ function CommandCenter() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

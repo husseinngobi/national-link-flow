@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { MOCK_CITIZEN } from "@/lib/ministries";
 import { ScanFace, Camera, Loader2, CheckCircle2, AlertTriangle, Shield, ArrowRight, Upload, Cpu } from "lucide-react";
 
@@ -33,7 +34,7 @@ function FaceScanPage() {
   const c = MOCK_CITIZEN;
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-2 inline-flex items-center gap-2">
@@ -203,6 +204,6 @@ function FaceScanPage() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }

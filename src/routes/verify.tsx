@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { MINISTRIES, MOCK_CITIZEN } from "@/lib/ministries";
 import {
   Search, Shield, CheckCircle2, Loader2, FileLock, User2,
@@ -32,7 +33,7 @@ function VerifyPage() {
   const c = MOCK_CITIZEN;
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-2">Citizen verification</div>
@@ -210,7 +211,7 @@ function VerifyPage() {
           </div>
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }
 

@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { SiteShell } from "@/components/site-shell";
+import { InternalShell } from "@/components/internal-shell";
+import { useOfficerGuard } from "@/lib/officer-session";
 import { MINISTRIES } from "@/lib/ministries";
 import { Shield, ArrowRight, Lock, Activity } from "lucide-react";
 
@@ -21,7 +22,7 @@ function ArchPage() {
   });
 
   return (
-    <SiteShell>
+    <InternalShell>
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-[0.2em] text-gold mb-2">System architecture</div>
@@ -124,7 +125,7 @@ function ArchPage() {
           ))}
         </div>
       </div>
-    </SiteShell>
+    </InternalShell>
   );
 }
 
