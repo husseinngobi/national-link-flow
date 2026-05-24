@@ -33,22 +33,20 @@ export function clearOfficerSession() {
 
 /**
  * Soft client-side guard for internal/officer-only pages.
+ * Synchronous check so hook order is stable across renders.
  * Prototype only — production would use server-enforced auth.
  */
 export function useOfficerGuard() {
   const nav = useNavigate();
-  const [session, setSession] = useState<OfficerSession | null>(null);
-  const [ready, setReady] = useState(false);
+  const session = typeof window !== "undefined" ? getOfficerSession() : null;
+  const ready = !!(session && session.mfaVerified);
 
   useEffect(() => {
-    const s = getOfficerSession();
-    if (!s || !s.mfaVerified) {
-      nav({ to: "/login", search: { redirect: window.location.pathname } as never });
-      return;
+    if (!ready) {
+      nav({ to: "/login" });
     }
-    setSession(s);
-    setReady(true);
-  }, [nav]);
+  }, [ready, nav]);
 
   return { session, ready };
 }
+
