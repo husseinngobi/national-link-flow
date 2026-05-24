@@ -27,6 +27,8 @@ function genLog(i: number) {
 }
 
 function AuditPage() {
+  const __guard = useOfficerGuard();
+  if (!__guard.ready) return null;
   const [q, setQ] = useState("");
   const [ministry, setMinistry] = useState("all");
   const logs = useMemo(() => Array.from({ length: 60 }, (_, i) => genLog(i)), []);
