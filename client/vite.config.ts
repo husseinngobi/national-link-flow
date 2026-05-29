@@ -7,13 +7,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   ssr: {
-    noExternal: [
-      "@tanstack/react-start",
-      "@tanstack/react-router",
-      "@tanstack/router-core",
-      "h3-v2",
-      "seroval",
-    ],
+    noExternal: true,
   },
   plugins: [
     tanstackStart({ server: { entry: "server" } }),
