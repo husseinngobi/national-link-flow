@@ -44,3 +44,7 @@ client/.vercel
 .git_untracked_count.txt
 .git_untracked_sample.txt
 .git_modified.txt
+.post_status.txt
+.post_status_utf8.txt
+.last_commit.txt
+.last_commit_utf8.txt
