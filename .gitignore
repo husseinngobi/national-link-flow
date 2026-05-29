@@ -48,3 +48,12 @@ client/.vercel
 .post_status_utf8.txt
 .last_commit.txt
 .last_commit_utf8.txt
+.final-status-check.txt
+.final-head-check.txt
+.final-branch-check.txt
+.status-clean.txt
+.status-check.txt
+.branchvv.txt
+.invoke-*.mjs
+.invoke-*.log
+.vercel-build*.log

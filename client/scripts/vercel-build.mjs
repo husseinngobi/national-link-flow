@@ -1,4 +1,4 @@
-import { cp, mkdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, rm, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -16,6 +16,11 @@ async function main() {
     throw new Error("npm_execpath is not available");
   }
 
+  const clientPackageJson = JSON.parse(
+    await readFile(path.join(clientRoot, "package.json"), "utf8"),
+  );
+  const runtimeDependencies = clientPackageJson.dependencies ?? {};
+
   execFileSync(process.execPath, [npmCli, "run", "build"], {
     cwd: clientRoot,
     stdio: "inherit",
@@ -28,18 +33,25 @@ async function main() {
   await cp(path.join(distDir, "client"), staticDir, { recursive: true });
   await cp(path.join(distDir, "server"), functionsDir, { recursive: true });
 
-  // The generated server bundle uses .js imports internally, so the function folder
-  // needs its own package.json to force Node to treat those files as ES modules.
+  // The generated server bundle keeps runtime imports externalized, so the function folder
+  // needs its own package.json plus installed runtime deps for Node resolution on Vercel.
   await writeFile(
     path.join(functionsDir, "package.json"),
     JSON.stringify(
       {
+        private: true,
         type: "module",
+        dependencies: runtimeDependencies,
       },
       null,
       2,
     ),
   );
+
+  execFileSync(process.execPath, [npmCli, "install", "--omit=dev", "--ignore-scripts", "--no-package-lock"], {
+    cwd: functionsDir,
+    stdio: "inherit",
+  });
 
   await writeFile(
     path.join(functionsDir, ".vc-config.json"),
