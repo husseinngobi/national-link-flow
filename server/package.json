@@ -1,0 +1,17 @@
+{
+  "name": "ngdxh-server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node boot.js",
+    "dev:pg": "node index-postgres.js",
+    "clean:sqlite": "node scripts/cleanup-sqlite.js",
+    "migrate:pg": "node scripts/migrate-postgres.js",
+    "start": "node boot.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "pg": "^8.11.0",
+    "dotenv": "^10.0.0"
+  }
+}
