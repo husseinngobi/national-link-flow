@@ -16,13 +16,15 @@ Use the `client/` folder as the project root.
 
 Suggested settings:
 
-- Build command: `npm run build`
-- Output: Vite default build output
+- Build command: `npm run vercel:build`
+- Output: `.vercel/output`
 - Install command: `npm install`
 
 Required environment variables:
 
 - `VITE_API_BASE_URL` - the public URL of the Render backend
+
+This repository now emits a Vercel Build Output bundle from the existing TanStack Start build, so Vercel serves the app through a generated function instead of treating it like a plain static folder.
 
 ## Backend On Render
 

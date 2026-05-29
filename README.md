@@ -66,6 +66,7 @@ That split fits the repo well because the frontend is a static/edge-friendly Rea
 
 - Use Postgres for the hosted backend. SQLite is fine for local demo mode, but it is not the right choice for persistent hosted deployment.
 - Set the frontend API base URL to the Render backend.
+- For Vercel, use the `client/` folder as the root, `npm run vercel:build` as the build command, and `.vercel/output` as the output.
 - Keep sensitive environment variables out of GitHub.
 - If you want a single-provider alternative, Cloudflare Pages + Workers is also a strong match for this codebase, but Vercel + Render is a good and practical split.
 

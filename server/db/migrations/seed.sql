@@ -2,7 +2,7 @@
 BEGIN;
 
 INSERT INTO citizens (nin, name, dob, sex, district, parish, village, tribe, religion, marital_status, mother, father, spouse, dependants, phone, email, photo_initial, risk_score, face_match_confidence, records_json, vehicles_json, properties_json, tax_history_json, criminal_json, education_json, employment_json, health_json, telecom_json, travel_json, updated_at)
-VALUES ('CM900112ABCDE', 'Nakato Aisha Mirembe', '1990-01-12', 'Female', 'Kampala Central', 'Nakasero II', 'Plot 18, Kira Road', 'Muganda', 'Muslim', 'Married', 'Namusoke Joy Mirembe', 'Ssebunya Edward Mirembe', 'Kato David Lubega · CM880711XYZ12', 2, '+256 772 458 119', 'a.nakato@mirembe.ug', 'NA', 12, 98.7, '{}', '[]', '[]', '[]', '[]', '[]', '[]', '[]', '[]', now()::text)
+VALUES ('CM900112ABCDE', 'Nakato Aisha Mirembe', '1990-01-12', 'Female', 'Kampala Central', 'Nakasero II', 'Plot 18, Kira Road', 'Muganda', 'Muslim', 'Married', 'Namusoke Joy Mirembe', 'Ssebunya Edward Mirembe', 'Kato David Lubega · CM880711XYZ12', 2, '+256 772 458 119', 'a.nakato@mirembe.ug', 'NA', 12, 98.7, '{}', '[]', '[]', '[]', '[]', '[]', '[]', '[]', '[]', '[]', now()::text)
 ON CONFLICT (nin) DO NOTHING;
 
 INSERT INTO requests (id, nin, service, status, date_label, notes, created_at)
