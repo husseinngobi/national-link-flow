@@ -34,3 +34,13 @@ server/data/
 *.sln
 *.sw?
 .lovable/
+
+# Vercel build output and local temp files
+.vercel
+client/.vercel
+.vercel/output
+.git_status.txt
+.git_untracked_*.txt
+.git_untracked_count.txt
+.git_untracked_sample.txt
+.git_modified.txt

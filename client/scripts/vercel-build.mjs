@@ -1,4 +1,4 @@
-import { cp, mkdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -28,12 +28,18 @@ async function main() {
   await cp(path.join(distDir, "client"), staticDir, { recursive: true });
   await cp(path.join(distDir, "server"), functionsDir, { recursive: true });
 
+  // Vercel should load the function entry as an ES module.
+  // Rename the emitted bundle from server.js to server.mjs so Node uses the ESM loader.
+  await rename(path.join(functionsDir, "server.js"), path.join(functionsDir, "server.mjs"));
+
   await writeFile(
     path.join(functionsDir, ".vc-config.json"),
     JSON.stringify(
       {
-        runtime: "nodejs22.x",
-        handler: "server.js",
+        // Vercel currently supports nodejs18.x and nodejs20.x runtimes.
+        // Use nodejs20.x to ensure compatibility with Vercel's runtime.
+        runtime: "nodejs20.x",
+        handler: "server.mjs",
         launcherType: "Nodejs",
         supportsResponseStreaming: true,
       },
