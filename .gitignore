@@ -33,3 +33,4 @@ server/data/
 *.njsproj
 *.sln
 *.sw?
+.lovable/
