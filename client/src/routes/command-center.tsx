@@ -123,7 +123,7 @@ function CommandCenter() {
         </div>
 
         {/* KPI strip */}
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 mb-6">
           {[
             { l: "Total RPS", v: totalRps.toString(), i: Zap },
             { l: "Avg latency", v: `${avgLat}ms`, i: Signal },
@@ -136,12 +136,12 @@ function CommandCenter() {
             { l: "Threats blocked / 24h", v: "1,418", i: ShieldCheck },
             { l: "AI insights", v: "37", i: Cpu },
           ].map((k) => (
-            <div key={k.l} className="glass rounded-lg p-3">
-              <div className="flex items-center justify-between text-muted-foreground text-[10px] uppercase tracking-wider">
-                <span>{k.l}</span>
+            <div key={k.l} className="glass rounded-lg p-3 min-w-0">
+              <div className="flex items-center justify-between gap-2 text-muted-foreground text-[10px] uppercase tracking-wider min-w-0">
+                <span className="min-w-0 break-words leading-tight">{k.l}</span>
                 <k.i className="w-3 h-3 text-gold" />
               </div>
-              <div className="text-2xl font-display font-bold mt-1">{k.v}</div>
+              <div className="text-2xl font-display font-bold mt-1 leading-none">{k.v}</div>
             </div>
           ))}
         </div>

@@ -128,11 +128,11 @@ function Landing() {
             </motion.div>
 
             <div className="mt-8 flex flex-wrap gap-3 text-xs text-muted-foreground">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background/70">
+              <span className="inline-flex max-w-full items-start gap-2 px-3 py-1.5 rounded-full border border-border bg-background/70 leading-snug sm:items-center">
                 <CheckCircle2 className="w-3.5 h-3.5 text-success" /> Public services only on this
                 page
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background/70">
+              <span className="inline-flex max-w-full items-start gap-2 px-3 py-1.5 rounded-full border border-border bg-background/70 leading-snug sm:items-center">
                 <Lock className="w-3.5 h-3.5 text-gold" /> Internal dashboards stay separate
               </span>
             </div>
