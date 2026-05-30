@@ -90,8 +90,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/logo.png" },
-      { rel: "apple-touch-icon", href: "/logo.png" },
+      { rel: "icon", type: "image/png", href: "/coat-of-arms.png" },
+      { rel: "apple-touch-icon", href: "/coat-of-arms.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

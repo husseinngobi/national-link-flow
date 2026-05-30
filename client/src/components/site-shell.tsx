@@ -64,7 +64,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center gap-6">
           <Link to="/" className="flex items-center gap-3 group">
             <img
-              src="/logo.png"
+              src="/coat-of-arms.png"
               alt="Republic of Uganda coat of arms"
               className="w-10 h-10 object-contain drop-shadow-sm"
             />
