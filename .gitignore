@@ -39,6 +39,10 @@ server/data/
 .vercel
 client/.vercel
 .vercel/output
+docs/*.md
+docs/**/*.md
+*.docx
+~$*.docx
 .git_status.txt
 .git_untracked_*.txt
 .git_untracked_count.txt
