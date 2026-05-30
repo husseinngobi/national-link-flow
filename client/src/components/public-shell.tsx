@@ -8,7 +8,6 @@ import {
   Headphones,
   ChevronRight,
 } from "lucide-react";
-import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import coatOfArms from "@/assets/coat-of-arms.png";
 
@@ -22,7 +21,6 @@ const NAV_ITEMS = [
 
 export function PublicShell({ children }: { children: React.ReactNode }) {
   const path = useRouterState({ select: (state) => state.location.pathname });
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -99,38 +97,41 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             >
               <LogIn className="w-4 h-4" /> Officer Gateway
             </Link>
-            <button
-              type="button"
-              onClick={() => setMenuOpen((value) => !value)}
-              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-border hover:bg-accent transition"
-              aria-label="Toggle navigation"
-            >
-              <Menu className="w-4 h-4" />
-            </button>
+            <details className="group lg:hidden relative">
+              <summary className="list-none inline-flex items-center justify-center w-10 h-10 rounded-md border border-border hover:bg-accent transition cursor-pointer select-none">
+                <Menu className="w-4 h-4" />
+              </summary>
+              <div className="absolute right-0 top-full mt-2 w-[min(20rem,calc(100vw-1rem))] rounded-xl border border-border bg-popover shadow-xl p-2 z-50">
+                <div className="grid gap-1">
+                  {NAV_ITEMS.map((item) => {
+                    const active = path === item.to;
+                    return (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${
+                          active ? "bg-accent text-foreground" : "hover:bg-accent/70 text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        <ChevronRight className="w-3.5 h-3.5 opacity-70" />
+                      </Link>
+                    );
+                  })}
+                  <Link
+                    to="/login"
+                    className="mt-1 inline-flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-gold bg-gold/10 border border-gold/30 hover:bg-gold/15 transition-colors"
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <LogIn className="w-4 h-4" /> Officer Gateway
+                    </span>
+                    <ChevronRight className="w-3.5 h-3.5 opacity-70" />
+                  </Link>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
-
-        {menuOpen && (
-          <div className="lg:hidden border-t border-border bg-background/95">
-            <div className="max-w-7xl mx-auto px-4 py-3 grid gap-1">
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="px-3 py-2 rounded-md text-sm hover:bg-accent/60 transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                to="/login"
-                className="mt-1 inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm text-gold bg-gold/10 border border-gold/30 hover:bg-gold/15 transition-colors"
-              >
-                <LogIn className="w-4 h-4" /> Officer Gateway
-              </Link>
-            </div>
-          </div>
-        )}
       </header>
 
       <main className="flex-1">{children}</main>
