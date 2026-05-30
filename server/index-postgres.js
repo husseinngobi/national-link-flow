@@ -227,6 +227,28 @@ async function getCitizenFromRequest(req) {
   return session ? { session, payload: await citizenAuthPayload(session.nin) } : null;
 }
 
+// In-memory simulated SSO token store for demo flows (keeps parity with sqlite server)
+const simTokens = new Map();
+
+function createSimToken(actor, role, org) {
+  const token = crypto.randomBytes(20).toString('hex');
+  const createdAt = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 8).toISOString();
+  simTokens.set(token, { actor, role, org, createdAt, expiresAt });
+  return { token, actor, role, org, createdAt, expiresAt };
+}
+
+function getSimToken(token) {
+  if (!token) return null;
+  const row = simTokens.get(token);
+  if (!row) return null;
+  if (new Date(row.expiresAt).getTime() <= Date.now()) {
+    simTokens.delete(token);
+    return null;
+  }
+  return { token, ...row };
+}
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   if (req.method === 'OPTIONS') {
@@ -313,6 +335,31 @@ const server = http.createServer(async (req, res) => {
     const trace = buildVerificationTrace(citizen);
     const auditEntry = await recordAudit('verify.citizen', nin, { trace });
     return sendJSON(res, { citizen, trace, auditId: auditEntry.id });
+  }
+
+  // Simulated SSO endpoints for demo/testing
+  if (url.pathname === '/api/sim/sso/login' && req.method === 'POST') {
+    try {
+      const body = await parseBody(req);
+      const actor = String(body?.actor ?? 'citizen');
+      const role = String(body?.role ?? (actor === 'officer' ? 'police_officer' : 'citizen'));
+      const org = String(body?.org ?? 'Demo Org');
+      const tokenPayload = createSimToken(actor, role, org);
+      await recordAudit('sso.login', actor, { role, org, token: tokenPayload.token.slice(0, 8) });
+      return sendJSON(res, tokenPayload, 200);
+    } catch (err) {
+      return sendJSON(res, { error: 'invalid body' }, 400);
+    }
+  }
+
+  if (url.pathname === '/api/sim/sso/validate' && req.method === 'GET') {
+    const authHeader = req.headers.authorization;
+    let token = null;
+    if (authHeader && authHeader.startsWith('Bearer ')) token = authHeader.slice(7).trim();
+    const row = getSimToken(token);
+    if (!token) return sendJSON(res, { error: 'missing token' }, 401);
+    if (!row) return sendJSON(res, { error: 'invalid token' }, 401);
+    return sendJSON(res, { token: row.token, actor: row.actor, role: row.role, org: row.org, expiresAt: row.expiresAt });
   }
 
   if (url.pathname === '/audit' && req.method === 'GET') {
