@@ -45,16 +45,16 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
       </div>
 
       <header className="sticky top-0 z-40 backdrop-blur-xl bg-background/90 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center gap-3 min-w-0">
           <Link to="/" className="flex items-center gap-3 shrink-0">
             <img
               src={coatOfArms}
               alt="Republic of Uganda coat of arms"
-              className="w-10 h-10 object-contain"
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain"
             />
-            <div className="leading-tight">
+            <div className="leading-tight min-w-0">
               <div className="font-display font-bold text-sm tracking-wide">NGDXH</div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+              <div className="hidden sm:block text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
                 Public service portal
               </div>
             </div>
@@ -91,11 +91,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             })}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-2 shrink-0">
             <ThemeToggle />
             <Link
               to="/login"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gold/40 bg-gold/10 text-sm text-gold hover:bg-gold/15 transition"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gold/40 bg-gold/10 text-sm text-gold hover:bg-gold/15 transition"
             >
               <LogIn className="w-4 h-4" /> Officer Gateway
             </Link>
@@ -122,6 +122,12 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                to="/login"
+                className="mt-1 inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm text-gold bg-gold/10 border border-gold/30 hover:bg-gold/15 transition-colors"
+              >
+                <LogIn className="w-4 h-4" /> Officer Gateway
+              </Link>
             </div>
           </div>
         )}
