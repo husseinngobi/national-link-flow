@@ -188,7 +188,7 @@ function sendJSON(res, obj, code = 200) {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Citizen-Session",
   });
   res.end(body);
 }
@@ -503,7 +503,7 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(204, {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Citizen-Session",
     });
     return res.end();
   }
@@ -803,4 +803,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
-server.listen(PORT, () => console.log(`ngdxh server listening http://localhost:${PORT}`));
+const HOST = process.env.HOST || "0.0.0.0";
+server.listen(PORT, HOST, () => console.log(`ngdxh server listening http://${HOST}:${PORT}`));

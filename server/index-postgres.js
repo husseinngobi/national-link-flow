@@ -325,4 +325,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
-server.listen(PORT, () => console.log(`ngdxh Postgres server listening http://localhost:${PORT}`));
+const HOST = process.env.HOST || '0.0.0.0';
+server.listen(PORT, HOST, () => console.log(`ngdxh Postgres server listening http://${HOST}:${PORT}`));
