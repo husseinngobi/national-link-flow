@@ -1,0 +1,5 @@
+﻿ M client/src/components/site-shell.tsx
+ M client/src/routes/__root.tsx
+?? .favicon-status.txt
+?? .post-api-branch.txt
+?? .post-api-head.txt
