@@ -69,13 +69,29 @@ export function OfficerShell({
         const res = await fetch(`${API_BASE_URL}/api/sim/sso/validate`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        if (!res.ok) throw new Error("invalid");
+        if (!res.ok) {
+          // try to capture response body for debugging
+          let body = "";
+          try {
+            body = JSON.stringify(await res.json());
+          } catch (e) {
+            try {
+              body = await res.text();
+            } catch (e2) {
+              body = "<unreadable>";
+            }
+          }
+          throw new Error(`status:${res.status} body:${body}`);
+        }
         const session = await res.json();
         const sessionRole = String(session?.role ?? storedRole ?? roleId);
         if (allowedRoles && !allowedRoles.includes(sessionRole))
           throw new Error("role not allowed");
         setChecking(false);
-      } catch (err) {
+      } catch (err: any) {
+        // debug flag: prevent redirect and surface error details
+        const DEBUG_SSO = import.meta.env.VITE_DEBUG_SSO === "true";
+        console.error("SSO validate failed:", err?.message ?? err);
         localStorage.removeItem("demo_sso_token");
         if (storedRole === roleId && storedOfficer && roleAllowed) {
           setChecking(false);
@@ -83,6 +99,30 @@ export function OfficerShell({
         }
 
         setChecking(false);
+        if (DEBUG_SSO) {
+          // show error message instead of navigating away so we can inspect
+          // write a visible error to document body for quick troubleshooting
+          const el = document.getElementById("ngdxh-sso-debug");
+          if (el) el.textContent = String(err?.message ?? err);
+          else {
+            const debugEl = document.createElement("div");
+            debugEl.id = "ngdxh-sso-debug";
+            debugEl.style.position = "fixed";
+            debugEl.style.left = "12px";
+            debugEl.style.bottom = "12px";
+            debugEl.style.zIndex = "99999";
+            debugEl.style.background = "rgba(0,0,0,0.85)";
+            debugEl.style.color = "white";
+            debugEl.style.padding = "12px";
+            debugEl.style.borderRadius = "6px";
+            debugEl.style.maxWidth = "min(90vw,560px)";
+            debugEl.style.fontFamily = "monospace";
+            debugEl.textContent = String(err?.message ?? err);
+            document.body.appendChild(debugEl);
+          }
+          return;
+        }
+
         nav({ to: "/login" });
       }
     }
