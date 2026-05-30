@@ -33,9 +33,9 @@ function Landing() {
   return (
     <PublicShell>
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg opacity-50" />
+        <div className="absolute inset-0 hidden sm:block grid-bg opacity-50" />
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/45 to-background" />
-        <div className="absolute -top-24 right-0 w-130 h-130 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute -top-24 right-0 hidden sm:block w-130 h-130 rounded-full bg-primary/20 blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 pt-18 pb-16 lg:pt-24 lg:pb-20 grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
           <div>
@@ -75,53 +75,53 @@ function Landing() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.26 }}
-              className="mt-8 flex flex-wrap gap-3"
+              className="mt-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3"
             >
               <Link
                 to="/services"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:bg-accent transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-sm hover:bg-accent transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Services <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/login"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Officer Verification <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/citizen-page"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:bg-accent transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-sm hover:bg-accent transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Citizen Portal <Globe2 className="w-4 h-4" />
               </Link>
               <Link
                 to="/company-page"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:bg-accent transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-sm hover:bg-accent transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Company Portal <Building2 className="w-4 h-4" />
               </Link>
               <Link
                 to="/login"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-gold/50 text-gold hover:bg-gold/10 transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md border border-gold/50 px-3 py-2 text-sm text-gold hover:bg-gold/10 transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Officer Sign-In <Shield className="w-4 h-4" />
               </Link>
               <Link
                 to="/sim-sso"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:bg-accent transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-sm hover:bg-accent transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Simulate SSO <Lock className="w-4 h-4" />
               </Link>
               <Link
                 to="/sim-runner"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:bg-accent transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-sm hover:bg-accent transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Run Simulation <Sparkles className="w-4 h-4" />
               </Link>
               <Link
                 to="/roles"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:bg-accent transition"
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-sm hover:bg-accent transition sm:px-5 sm:py-3 sm:text-base"
               >
                 Roles & Permissions
               </Link>
@@ -142,7 +142,7 @@ function Landing() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12, duration: 0.55 }}
-            className="glass rounded-2xl p-6 border border-border/80"
+            className="glass rounded-2xl p-6 border border-border/80 dark:!bg-none dark:!bg-card dark:backdrop-blur-none"
           >
             <div className="flex items-center justify-between mb-5">
               <div>
@@ -337,7 +337,7 @@ function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="glass rounded-xl p-5"
+                className="glass rounded-xl p-5 dark:!bg-none dark:!bg-card dark:backdrop-blur-none"
               >
                 <div className="w-10 h-10 rounded-md bg-primary/10 text-primary flex items-center justify-center mb-3">
                   <Clock3 className="w-4 h-4" />
@@ -351,9 +351,9 @@ function Landing() {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 pb-20">
-        <div className="relative overflow-hidden rounded-2xl border border-gold/40 bg-linear-to-br from-primary to-[color-mix(in_oklab,var(--color-primary)_60%,black)] p-10 lg:p-14 text-primary-foreground">
-          <div className="absolute inset-0 grid-bg opacity-20" />
-          <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-gold/30 blur-3xl" />
+        <div className="relative overflow-hidden rounded-2xl border border-gold/40 bg-primary sm:bg-linear-to-br sm:from-primary sm:to-[color-mix(in_oklab,var(--color-primary)_60%,black)] p-10 lg:p-14 text-primary-foreground">
+          <div className="absolute inset-0 hidden sm:block grid-bg opacity-20" />
+          <div className="absolute -right-32 -top-32 hidden sm:block w-96 h-96 rounded-full bg-gold/30 blur-3xl" />
           <div className="relative max-w-2xl">
             <Shield className="w-8 h-8 text-gold mb-4" />
             <h3 className="text-3xl font-display font-bold leading-tight text-primary-foreground">

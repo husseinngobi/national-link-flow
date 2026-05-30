@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { PublicShell } from "@/components/public-shell";
 import { API_BASE_URL } from "@/lib/api";
@@ -15,6 +15,7 @@ import { ArrowRight, CheckCircle2, EyeOff, KeyRound, Lock, Mail, Send, Shield } 
 export const Route = createFileRoute("/login")({ component: LoginPage });
 
 function LoginPage() {
+  const nav = useNavigate();
   const [selected, setSelected] = useState(ROLES[0].id);
   const [gatewayEmail, setGatewayEmail] = useState("officer@agency.go.ug");
   const [gatewayCode, setGatewayCode] = useState("");
@@ -65,7 +66,9 @@ function LoginPage() {
 
   const enterDashboard = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let token = "";
+    localStorage.setItem("demo_officer_id", cred.officerId);
+    localStorage.setItem("demo_officer_role", selected);
+
     try {
       const response = await fetch(`${API_BASE_URL}/api/sim/sso/login`, {
         method: "POST",
@@ -74,19 +77,13 @@ function LoginPage() {
       });
       const json = await response.json();
       if (json?.token) {
-        token = json.token;
         localStorage.setItem("demo_sso_token", json.token);
-        localStorage.setItem("demo_officer_id", cred.officerId);
-        localStorage.setItem("demo_officer_role", selected);
       }
     } catch {
       // keep going for the demo
     }
 
-    const hash = token
-      ? `#demoToken=${encodeURIComponent(token)}&demoRole=${encodeURIComponent(selected)}&demoOfficer=${encodeURIComponent(cred.officerId)}`
-      : "";
-    window.location.assign(`/dashboard/${selected}${hash}`);
+    await nav({ to: `/dashboard/${selected}` });
   };
 
   const selectedPin = cred.pin;

@@ -15,7 +15,9 @@ function getInitialTheme(): Theme {
     return "light";
   }
 
-  const stored = window.sessionStorage.getItem(THEME_STORAGE_KEY);
+  const stored =
+    window.localStorage.getItem(THEME_STORAGE_KEY) ??
+    window.sessionStorage.getItem(THEME_STORAGE_KEY);
   if (stored === "light" || stored === "dark") {
     return stored;
   }
@@ -37,6 +39,7 @@ export function useTheme() {
   const toggleTheme = () => {
     setTheme((currentTheme) => {
       const nextTheme: Theme = currentTheme === "dark" ? "light" : "dark";
+      window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
       window.sessionStorage.setItem(THEME_STORAGE_KEY, nextTheme);
       applyTheme(nextTheme);
       return nextTheme;

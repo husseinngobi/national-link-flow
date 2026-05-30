@@ -14,7 +14,9 @@ function getInitialTheme(): "light" | "dark" {
     return "light";
   }
 
-  const stored = window.sessionStorage.getItem(THEME_STORAGE_KEY);
+  const stored =
+    window.localStorage.getItem(THEME_STORAGE_KEY) ??
+    window.sessionStorage.getItem(THEME_STORAGE_KEY);
   if (stored === "light" || stored === "dark") {
     return stored;
   }
@@ -35,6 +37,7 @@ export function ThemeToggle() {
     const next = theme === "light" ? "dark" : "light";
     setTheme(next);
     try {
+      localStorage.setItem(THEME_STORAGE_KEY, next);
       sessionStorage.setItem(THEME_STORAGE_KEY, next);
     } catch (e) {
       // ignore storage errors
